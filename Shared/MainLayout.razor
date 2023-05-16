@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+<RadzenLayout style="height: 1000px;">
+    <RadzenHeader Style="background-color: rz-background-color-warning;">
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenSidebarToggle Click="@(() => sidebar1Expanded = !sidebar1Expanded)" />
+            <RadzenLabel Text="Components Usage" />
+            <div class="" style="position: absolute; right:10px;">
+                <RadzenButton Click="@(()=>NavigationManager.NavigateTo("/login"))" class="rz-border-radius-2"
+                    ButtonStyle="ButtonStyle.Danger">
+                    <RadzenLink Text="Login" Path="/login" />
+                </RadzenButton>
+            </div>
+        </RadzenStack>
+    </RadzenHeader>
+    <RadzenSidebar @bind-Expanded="@sidebar1Expanded">
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Deneme Tahtası" Icon="post_add" Path="/deneme" />
+            <RadzenPanelMenuItem Text="Spoti Demo" Icon="home" Path="/" />
+            <RadzenPanelMenuItem Text="Buttons" Icon="dns" Path="buttons" />
+            <RadzenPanelMenuItem Text="SplitButtonPage" Icon="dashboard" Path="/splitbutton" />
+            <RadzenPanelMenuItem Text="Components for LoginPage" Icon="account_circle" Path="/loginpagecomponents" />
+            <RadzenPanelMenuItem Text="Components for Tooltip" Icon="open_in_new" Path="/tooltip" />
+            <RadzenPanelMenuItem Text="Components for DataGrid" Icon="drag_indicator" Path="/datagrid" />
+            <RadzenPanelMenuItem Text="Components for Dropdown DataGrid" Icon="arrow_drop_down"
+                Path="/dropdowndatagrid" />
+            <RadzenPanelMenuItem Text="Components for DataList" Icon="post_add" Path="/datalist" />
+
+        </RadzenPanelMenu>
+        <div class="rz-p-4">
+            Sidebar
+        </div>
+    </RadzenSidebar>
+    <RadzenBody>
+        <div class="rz-p-4">
+            <RadzenNotification />
+            @Body
+        </div>
+    </RadzenBody>
+    <RadzenFooter>
+        Footer
+    </RadzenFooter>
+</RadzenLayout>
+
+@code {
+    bool sidebar1Expanded = true;
+
+}

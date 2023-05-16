@@ -1,0 +1,18 @@
+.card-hover:hover {
+    cursor: pointer;
+    background-color: var(--rz-base-800) !important;
+}
+
+.mt-12 {
+
+    margin-top: 100px;
+
+}
+
+#fab {
+    transition: all 0.3s;
+}
+
+.card-hover:hover #fab {
+    opacity: 1 !important;
+}

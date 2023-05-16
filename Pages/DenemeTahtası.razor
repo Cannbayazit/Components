@@ -1,0 +1,364 @@
+@page "/deneme"
+@inject NotificationService NotificationService
+
+@* Accordion Component *@
+<div>
+  @* Single Item Accordion *@
+  <h3>Single Item Accordion</h3>
+  <RadzenAccordion>
+    <Items>
+      <RadzenAccordionItem Text="Orders" Icon="account_balance_wallet">
+        Details for Orders
+      </RadzenAccordionItem>
+      <RadzenAccordionItem Text="Employees" Icon="account_box">
+        Details for Employees
+      </RadzenAccordionItem>
+      <RadzenAccordionItem Text="Customers" Icon="accessibility">
+        Details for Customers
+      </RadzenAccordionItem>
+    </Items>
+  </RadzenAccordion>
+  <hr>
+  <h3>Multiple Item Accordion</h3>
+  <RadzenAccordion Multiple="true">
+    <Items>
+      <RadzenAccordionItem Text="Orders" Icon="account_balance_wallet">
+        Details for Orders
+      </RadzenAccordionItem>
+      <RadzenAccordionItem Text="Employees" Icon="account_box">
+        Details for Employees
+      </RadzenAccordionItem>
+      <RadzenAccordionItem Text="Customers" Icon="accessibility">
+        Details for Customers
+      </RadzenAccordionItem>
+    </Items>
+  </RadzenAccordion>
+  <hr>
+  @* Accordion'a Event Atama yapabiliriz *@
+  <RadzenAccordion Collapse=@(args => Change(args, "collapsed")) Expand=@(args => Change(args, "expanded"))>
+    <Items>
+      <RadzenAccordionItem Text="Orders" Icon="account_balance_wallet">
+        Details for Orders
+      </RadzenAccordionItem>
+      <RadzenAccordionItem Text="Employees" Icon="account_box">
+        Details for Employees
+      </RadzenAccordionItem>
+      <RadzenAccordionItem Text="Customers" Icon="accessibility">
+        Details for Customers
+      </RadzenAccordionItem>
+    </Items>
+  </RadzenAccordion>
+</div>
+@*-------------------------------------------------------------------------------------------------------------------*@
+@* Arch Gauge Component*@
+<div>
+  <RadzenArcGauge Style="width: 300px; height: 300px">
+    <RadzenArcGaugeScale>
+      <RadzenArcGaugeScaleValue Value="50" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* Scale Customization on Arch Gauge Component *@
+  <RadzenArcGauge Style="width: 300px; height: 300px">
+    @* Min max ve step değerlerini vererek ayar yapabilirz. *@
+    <RadzenArcGaugeScale Min="100" Max="1000" Step="100">
+      <RadzenArcGaugeScaleValue Value="950" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* Tick Configuration on Arch Gauge *@
+  <RadzenArcGauge Style="width: 300px; height: 300px">
+    @* TickPosition ile Tick'lerin hangi konumda bulunacağını belirtiriz. *@
+    <RadzenArcGaugeScale TickPosition="GaugeTickPosition.Outside">
+      <RadzenArcGaugeScaleValue Value="50" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  <RadzenArcGauge Style="width: 300px; height: 300px">
+    @* Minor step propertysi tikler arasına yerleştirilecek ufak boyuttaki tiklerin adedini belirtir. *@
+    <RadzenArcGaugeScale TickPosition="GaugeTickPosition.Outside" MinorStep="5">
+      <RadzenArcGaugeScaleValue Value="50" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* Change the start and and angles *@
+  @* Start ve and angle propertylerini kullanarak çemberi boyutlandırabilir ve istediğimiz açıdan başlatabiliriz. *@
+  <RadzenArcGauge>
+    <RadzenArcGaugeScale StartAngle="0" EndAngle="360">
+      <RadzenArcGaugeScaleValue Value="50" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* Scale pozisyonu değiştirebiliriz. *@
+  <RadzenArcGauge Style="widtg:300px;height:300px">
+    <RadzenArcGaugeScale Y="1">
+      <RadzenArcGaugeScaleValue Value="50" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* oluşturacağımız çemberin boyutunu Radius propertysini kullanarak değiştirebiliriz. *@
+  <RadzenArcGauge Style="widtg:300px;height:300px">
+    <RadzenArcGaugeScale Radius="0.5">
+      <RadzenArcGaugeScaleValue Value="50" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* showvalue propertisi ile valueyi kapatabiliriz. *@
+  <RadzenArcGauge>
+    <RadzenArcGaugeScale>
+      <RadzenArcGaugeScaleValue Value="50" ShowValue="false" />
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+  <hr>
+  @* <Template> Propertysini kullanarak valueyi biçimlendirebiliriz. *@
+  <RadzenArcGauge>
+    <RadzenArcGaugeScale Min="0" Max="260">
+      <RadzenArcGaugeScaleValue Value=@value>
+        <Template Context="value">
+          <h4>
+            @value.Value <sup>km/h</sup>
+          </h4>
+        </Template>
+      </RadzenArcGaugeScaleValue>
+    </RadzenArcGaugeScale>
+  </RadzenArcGauge>
+</div>
+<hr>
+@*-------------------------------------------------------------------------------------------------------------------*@
+@* Badge Component *@
+@* Badge Stilleri *@
+<RadzenBadge BadgeStyle="BadgeStyle.Primary" Text="Primary" />
+<RadzenBadge BadgeStyle="BadgeStyle.Secondary" Text="Secondary" />
+<RadzenBadge BadgeStyle="BadgeStyle.Light" Text="Light" />
+<RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Success" />
+<RadzenBadge BadgeStyle="BadgeStyle.Danger" Text="Danger" />
+<RadzenBadge BadgeStyle="BadgeStyle.Warning" Text="Warning" />
+<RadzenBadge BadgeStyle="BadgeStyle.Info" Text="Info" />
+<br><br>
+<hr>
+@* Badge with isPill=true *@
+<RadzenBadge BadgeStyle="BadgeStyle.Primary" IsPill="true" Text="Primary" />
+<RadzenBadge BadgeStyle="BadgeStyle.Secondary" IsPill="true" Text="Secondary" />
+<RadzenBadge BadgeStyle="BadgeStyle.Light" IsPill="true" Text="Light" />
+<RadzenBadge BadgeStyle="BadgeStyle.Success" IsPill="true" Text="Success" />
+<RadzenBadge BadgeStyle="BadgeStyle.Danger" IsPill="true" Text="Danger" />
+<RadzenBadge BadgeStyle="BadgeStyle.Warning" IsPill="true" Text="Warning" />
+<RadzenBadge BadgeStyle="BadgeStyle.Info" IsPill="true" Text="Info" />
+<br><br>
+<hr>
+@* Button içinde Badge kullanımı *@
+<RadzenButton ButtonStyle="ButtonStyle.Info">
+  Button
+  <RadzenBadge BadgeStyle="BadgeStyle.Primary" Text="15" />
+</RadzenButton>
+<RadzenButton ButtonStyle="ButtonStyle.Light">
+  Button
+  <RadzenBadge BadgeStyle="BadgeStyle.Primary" IsPill="@true" Text="15" />
+</RadzenButton>
+<br><br>
+<hr>
+@*-------------------------------------------------------------------------------------------------------------------*@
+@* Bread Crumb *@
+@* Standart Bread Crumb Menu Kullanımı *@
+<RadzenBreadCrumb>
+  <Items>
+    <RadzenBreadCrumbItem Text="Layout & Navigation" />
+    <RadzenBreadCrumbItem Text="Bread Crumb" />
+  </Items>
+</RadzenBreadCrumb>
+<hr>
+<br>
+@*-------------------------------------------------------------------------------------------------------------------*@
+@* Button Component *@
+@* Basit Kullanım *@
+<RadzenButton Click=@OnSave Text="Save" />
+@* Submit Button Formlarda kullanılan butonların tipleri submit veya reset atayabiliriz.*@
+<RadzenButton Text="Submit" ButtonType="ButtonType.Submit" />
+@* Reset Button *@
+<RadzenButton Text="Reset" ButtonType="ButtonType.Reset" />
+<hr><br>
+@* Custom Content Button *@
+<RadzenButton>
+  Some text
+  <RadzenImage Path="Images/65.jpg" Style="width:20px;margin-left: 10px;" />
+</RadzenButton>
+@* Button Styles - ButtonStyle="ButtonStyle.{Primary-Light-Success-Danger-Warning-Info-Secondary} kullanımlarını
+alabilir" *@
+<RadzenButton Text="Danger" ButtonStyle="ButtonStyle.Danger" />
+<hr><br><br>
+@* Meşgul Button - Bussy Button *@
+<RadzenButton IsBusy=@busy Click=@OnBusyClick Text="Save" />
+<hr><br><br>
+@*-------------------------------------------------------------------------------------------------------------------*@
+@* Chart Component Kullanımı*@
+@* Basit Kullanımı *@
+<RadzenChart>
+  <RadzenColumnSeries Data="@revenue" CategoryProperty="Quarter" ValueProperty="Revenue" />
+</RadzenChart>
+<hr><br><br>
+@* Chart Axis Ayarlama *@
+@* Maks min ve her adımda ne kadar artacagını ayarlayabiliriz. *@
+<RadzenChart>
+  <RadzenColumnSeries Data="@revenue" CategoryProperty="Quarter" ValueProperty="Revenue" />
+  <RadzenValueAxis Min="0" Max="400000" Step="100000" />
+</RadzenChart>
+<hr><br><br>
+@* Chart Üzerinde Format Propertysi kullanımı *@
+<RadzenChart>
+  <RadzenColumnSeries Data="@revenue" CategoryProperty="Quarter" ValueProperty="Revenue" />
+  <RadzenValueAxis FormatString="{0:C}" />
+</RadzenChart>
+<br>
+<hr><br>
+
+@* LinkComponent *@
+
+@* Basit Kullanım *@
+<RadzenLink Path="#" Text="Go to Path" />
+<br>
+<hr><br>
+@* Path ve İkon ile birlikte *@
+<RadzenLink Icon="accessibility" Path="#" Text="Go to the Path" />
+@* URL'e Yönlendirme *@
+<RadzenLink Path="https://www.radzen.com" Text="Go to url" Target="_blank" />
+<hr><br><br>
+@* Label Component Kullanımı *@
+<RadzenLabel Text="For form name" Component="CheckBox1" />
+<RadzenCheckBox TValue="Product" Name="CheckBox1" />
+<hr><br><br>
+@* Label with html content *@
+<RadzenLabel Component="CheckBox1">Some <strong>text</strong></RadzenLabel>
+<RadzenCheckBox TValue="Product" Name="Product" />
+<hr><br><br>
+
+@* Notification - Bildirim *@
+<RadzenButton Text="Show info notification" Style="margin-bottom: 20px; width: 200px"
+                    ButtonStyle="ButtonStyle.Info"
+                    Click=@(args => ShowNotification(new NotificationMessage { Severity = NotificationSeverity.Info, Summary = "Info Summary", Detail = "Info Detail", Duration = 4000 })) />
+
+@* Panel Component *@
+<RadzenPanel>
+    <HeaderTemplate>
+        Custom header
+    </HeaderTemplate>
+    <ChildContent>
+        Custom content
+    </ChildContent>
+    <SummaryTemplate>
+        Custom summary
+    </SummaryTemplate>
+</RadzenPanel>
+<hr><br><br>
+@* Progress Bar Component *@
+<RadzenProgressBar @bind-Value="@value"  />
+
+<hr><br><br>
+@* Radial Gauge Component*@
+<RadzenRadialGauge Style="width: 300px; height: 300px">
+  <RadzenRadialGaugeScale>
+    <RadzenRadialGaugeScalePoiner Value="50" />
+  </RadzenRadialGaugeScale>
+</RadzenRadialGauge>
+<hr><br><br>
+
+@* RadioButtonList comp *@
+
+<RadzenRadioButtonList @bind-Value=@Rb TValue="int">
+  <Items>
+    <RadzenRadioButtonListItem Text="Orders" Value="1" />
+    <RadzenRadioButtonListItem Text="Employee" Value="2" />
+    <RadzenRadioButtonListItem Text="Product" Value="3" />
+  </Items>
+</RadzenRadioButtonList>
+<br><hr><br>
+@* Rating BUtton Components *@
+
+<RadzenRating @bind-Value=@rt Stars="10" />
+
+<br><hr><br>
+@* Select Bar Component *@
+<RadzenSelectBar @bind-Value=@singleValue TValue="bool">
+    <Items>
+        <RadzenSelectBarItem Text="On" Value="true" />
+        <RadzenSelectBarItem Text="Off" Value="false" />
+    </Items>
+</RadzenSelectBar>
+<br><hr><br>
+@* Coklu Seçimli Select Bar *@
+
+<RadzenSelectBar @bind-Value=@values TValue="IEnumerable<int>" Multiple="true">
+    <Items>
+        <RadzenSelectBarItem Text="Orders" Value="1" />
+        <RadzenSelectBarItem Text="Employees" Value="2" />
+        <RadzenSelectBarItem Text="Customers" Value="3" />
+    </Items>
+</RadzenSelectBar>
+<br><hr><br>
+<RadzenSlider @bind-Value=@sl TValue="int" Step="10" Min="0" Max="100" />
+<br><hr><b></b>
+<RadzenTextBox TValue="string" />
+
+@code {
+  @* For Slider Component *@
+  int sl = 67;
+  @* ----------------- *@
+
+  @* For Select Bar *@
+  IEnumerable<int> values = new int[] { 1, 2 };
+   bool singleValue = false;
+  @* ----------------- *@
+
+  @* For Rating Button *@
+  int rt = 3;
+  @* ----------------- *@
+  void Change(object data, string action)
+  {
+    Console.WriteLine($"Item with index {data} {action}");
+  }
+  @*-------------------------------------------------------------------------------------------------------------------*@
+  double value = 10;
+  @*-------------------------------------------------------------------------------------------------------------------*@
+  void OnSave()
+  {
+    // Implementation
+  }
+  @*-------------------------------------------------------------------------------------------------------------------*@
+  bool busy;
+  async Task OnBusyClick()
+  {
+    busy = true;
+    // Task:Delay kullanarak buttonun tıklanma efektini bekletebiliriz.
+    await Task.Delay(2000);
+    // süre bittikten sonra aktifleştiririz.
+    busy = false;
+  }
+  @*-------------------------------------------------------------------------------------------------------------------*@
+  //For Chart
+  class DataItem
+  {
+    public string Quarter { get; set; }
+    public double Revenue { get; set; }
+  }
+  DataItem[] revenue = new DataItem[]
+  {
+new DataItem { Quarter = "Q1", Revenue = 234000 },
+new DataItem { Quarter = "Q2", Revenue = 284000 },
+new DataItem { Quarter = "Q3", Revenue = 274000 },
+new DataItem { Quarter = "Q4", Revenue = 294000 }
+  };
+  @*-------------------------------------------------------------------------------------------------------------------*@
+  @* Notification Component *@
+ void ShowNotification(NotificationMessage message)
+    {
+        NotificationService.Notify(message);
+
+        Console.WriteLine($"{message.Severity} notification");
+    }
+     
+     //for Radio Button
+int Rb = 1;
+
+
+
+
+}

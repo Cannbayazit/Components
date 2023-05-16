@@ -1,0 +1,38 @@
+@page "/tooltip"
+@inject NotificationService NotificationService
+
+
+@* 1 - builder.Services.AddScoped<NotificationService>(); Program.cs dosyasına ekle*@
+@* 2 - @inject NotificationService NotificationService kullanılacak olan page'e ekle*@
+
+@* 2--------------------Info Notification--------------------2 *@
+<RadzenButton Text="Show Info notification" Style="width: 200px;" ButtonStyle="ButtonStyle.Info" Click=@(args
+    =>ShowNotification(new NotificationMessage{Severity=NotificationSeverity.Info , Summary="Info Summary" ,
+    Detail="Info Detail" , Duration=4000}))></RadzenButton>
+
+
+@* 2--------------------Warning Notification--------------------2 *@
+<RadzenButton Text="Show warning notification" Style="width: 200px;" ButtonStyle="ButtonStyle.Warning" Click=@(args
+    =>ShowNotification(new NotificationMessage{Severity=NotificationSeverity.Warning , Summary="Warning Summary" ,
+    Detail="Warning Detail" , Duration=4000}))></RadzenButton>
+@* 3--------------------Error Notification--------------------3 *@
+<RadzenButton Text="Show warning notification" Style="width: 200px;" ButtonStyle="ButtonStyle.Danger" Click=@(args
+    =>ShowNotification(new NotificationMessage{Severity=NotificationSeverity.Error , Summary="Error Summary" ,
+    Detail="Error Detail" , Duration=4000}))></RadzenButton>
+@* 4--------------------Success Notification--------------------4 *@
+<RadzenButton Text="Show warning notification" Style="width: 200px;" ButtonStyle="ButtonStyle.Success" Click=@(args
+    =>ShowNotification(new NotificationMessage{Severity=NotificationSeverity.Success , Summary="Success Summary" ,
+    Detail="Success Detail" , Duration=4000}))></RadzenButton>
+
+@* 4--------------------Notification Pozisyonlama--------------------4 *@
+<RadzenButton Text="Show notification with custom position" Click=@(args =>ShowNotification(new
+    NotificationMessage{Severity=NotificationSeverity.Success , Summary="Success Summary" , Detail="Success Detail" ,
+    Duration=4000, Style="position:absolute;left:-1000px;"}))></RadzenButton>
+@code {
+
+    void ShowNotification(NotificationMessage message)
+    {
+        NotificationService.Notify(message);
+    }
+
+}

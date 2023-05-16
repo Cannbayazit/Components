@@ -1,0 +1,75 @@
+@page "/buttons"
+<p style="display: inline-block; position: absolute; top:50%; left:50%">@ButtonName</p>
+<br>
+@* Text Button *@
+<RadzenButton Click=@(args=>OnClick("Button with text")) Text="Button" Style="width: 150px;" />
+<br><br>
+
+@* Text and Icon Button *@
+<RadzenButton Click=@(args=>OnClick("Button with text and icon")) Text="Button" Icon="account_circle"
+    Style="width: 150px;" />
+<br><br>
+
+@* Icon Button *@
+<RadzenButton Click=@(args=>OnClick("Button with icon")) Icon="account_circle" Style="width: 150px;" />
+<br><br>
+@* Image Button *@
+<RadzenButton Click=@(args=>OnClick("Button with image")) Image="Images/whatsapp.webp" ButtonStyle="ButtonStyle.Light"
+    Style="width: 80px;" />
+<br><br>
+@* Content Button *@
+<RadzenButton class="rz-background-color-danger-lighter" Click=@(args=>OnClick("Button with Content"))
+    Image="Images/whatsapp.webp" ButtonStyle="ButtonStyle.Light" Style="width: 200px; margin-left: 10px;">
+    Judd Crawford
+    <RadzenImage Path="Images/65.jpg" Style="width: 100px;" />
+</RadzenButton>
+<br><br>
+
+@* Disabled Button *@
+<RadzenButton Disabled="true" Text="Button" Style="width: 150px;" />
+<br><br>
+
+@* Primary Button *@
+<RadzenButton Click=@(args=>OnClick("Primary Button")) ButtonStyle="ButtonStyle.Primary" Style="width: 100px;"
+    Text="Primary" />
+<br><br>
+
+@* Secondary Button *@
+<RadzenButton Click=@(args=>OnClick("Secondary Button")) Text="Secondary" ButtonStyle="ButtonStyle.Secondary"
+    Style="width: 140px;" />
+<br><br>
+
+@* Light Button *@
+<RadzenButton Click=@(args=>OnClick("Light Button")) Text="Light" ButtonStyle="ButtonStyle.Light"
+    Style="width: 140px;" />
+<br><br>
+@* Danger Button *@
+<RadzenButton Click=@(args=>OnClick("Danger Button")) Text="Danger" ButtonStyle="ButtonStyle.Danger"
+    Style="width: 140px;" />
+<br><br>
+@* Warning Button *@
+<RadzenButton Click=@(args=>OnClick("warning Button")) Text="Warning" ButtonStyle="ButtonStyle.Warning"
+    Style="width: 140px;" />
+<br><br>
+@* Success Button *@
+<RadzenButton Click=@(args=>OnClick("Succes Button")) Text="Success" ButtonStyle="ButtonStyle.Success"
+    Style="width: 140px;" />
+<br><br>
+@* Dark Button *@
+<RadzenButton Click=@(args=>OnClick("Dark Button")) Text="Dark" ButtonStyle="ButtonStyle.Dark" Style="width: 140px;" />
+<br><br>
+@* Info Button *@
+<RadzenButton Click=@(args=>OnClick("Info Button")) Text="Info" ButtonStyle="ButtonStyle.Info" Style="width: 140px;" />
+<br><br>
+
+
+<br>
+
+@code {
+
+    public string ButtonName { get; set; }
+    void OnClick(string buttonName)
+    {
+        ButtonName = buttonName;
+    }
+}

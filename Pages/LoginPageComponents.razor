@@ -1,0 +1,57 @@
+@page "/loginpagecomponents"
+
+
+<h5 style="text-align: center;">Basit Login Page Component</h5>
+<br>
+<RadzenLogin AllowRegister="false" AllowResetPassword="false" Login=@(args => OnLogin(args,"Simple Login")) />
+
+<br>
+<hr><br><br>
+<h5 style="text-align: center;">Login Page ve Kayıt olma Component</h5>
+<br>
+@* ------------------------------------------------------------------- *@
+@* Eğer AllowRegister parametresini default kullanılırsa register componenti eklenir *@
+@* Login Page with register button *@
+<RadzenLogin AllowResetPassword="false" Login=@(args => OnLogin(args,"Login With Register"))
+    Register="@(args=> OnRegister("Login With Register"))" />
+<br>
+<hr><br>
+@* ------------------------------------------------------------------- *@
+@* Login Page with register and password button *@
+@* AllowReset Pasword parametresi default kullanıldıgında forgot password butonu ile birlikte gelir *@
+<h5 style="text-align: center;">Login Page, Kayıt olma ve Şifremi unuttum Component</h5>
+<br>
+<RadzenLogin Login=@(args => OnLogin(args,"Login With Register and password reset"))
+    ResetPassword="@(args =>onResetPassword(args,"Login with reset password and register"))"
+    Register="@(args=> OnRegister("Login with reset password and register"))" />
+<br>
+<hr><br>
+<h5 style="text-align: center;">Default Username ve Pssword ile Login Page Componenti</h5>
+<br>
+@* ------------------------------------------------------------------- *@
+<RadzenLogin AllowRegister="true" AllowResetPassword="true" Username=@userName Password=@password Login=@(args =>
+    OnLogin(args,"Login With defaul values")) ResetPassword="@(args =>onResetPassword(args,"Login With defaul values"))"
+    Register="@(args=> OnRegister("Login With defaul values"))" />
+
+<br>
+<p>@msg</p>
+
+
+@code {
+    string userName = "admin";
+    string password = "admin";
+    string msg;
+    @* Login args sınıfından kullanıcın kullanıcı adı ve şifre bilgilerine erişilebilir *@
+    void OnLogin(LoginArgs args, string name)
+    {
+        msg = name + " -> UserName: " + args.Username + " and password: " + args.Password;
+    }
+    void OnRegister(string name)
+    {
+        msg = name + " -> Register";
+    }
+    void onResetPassword(string value, string name)
+    {
+        msg = name + " -> ResetPassword for user: " + value;
+    }
+}

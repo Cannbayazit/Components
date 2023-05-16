@@ -1,0 +1,44 @@
+@page "/login"
+@layout Components.Shared.LoginLayout
+<RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Center"
+    class="d-flex" style="height: 100vh;">
+    <RadzenCard class="d-flex justify-content-between" Style="width:100%;max-width:1000px">
+        <RadzenCard class="rz-p-12 rz-my-12 rz-mx-12" Style="box-shadow:none">
+            <RadzenImage Path="Images/img1.webp">
+            </RadzenImage>
+        </RadzenCard>
+        <RadzenCard class="rz-p-12 rz-my-12 rz-mx-12 " Style="box-shadow:none;justify-content:center;">
+            <RadzenText class="rz-mx-auto" Style="display:block;font-weight: bold; text-align:center;"
+                TextStyle="TextStyle.DisplayH5">
+                Member
+                Login
+            </RadzenText>
+            <div class="justify-content-center align-items-center">
+                <RadzenFormField style="border:none !important; width:100%;" class=" rz-my-0">
+                    <Start>
+                        <RadzenIcon Icon="email" />
+                    </Start>
+                    <ChildContent>
+                        <RadzenMask style="border:none !important; " Mask="**** **** **** ****" Placeholder="Email"
+                            Name="CardNr" />
+                    </ChildContent>
+                </RadzenFormField>
+                <RadzenFormField style="border:none !important; width:100%;" class=" rz-my-0">
+                    <Start>
+                        <RadzenIcon style="border:none !important;" Icon=" lock" />
+                    </Start>
+                    <ChildContent>
+                        <RadzenMask Mask="**** **** **** ****" Placeholder="Email" Name="CardNr" />
+                    </ChildContent>
+                </RadzenFormField>
+                <RadzenButton class="rz-my-6" Style="display:block !important; width:100%;border-radius:20px"
+                    ButtonStyle="ButtonStyle.Success" Text="LOGIN">
+                </RadzenButton>
+                <RadzenText class="d-inline-block" Text="Forgot:" />
+                <RadzenLink Path="#" Text="Username" Target="_blank" />
+                <RadzenLink Path="#" Text="/" Target="_blank" />
+                <RadzenLink Path="#" Text="Password" Target="_blank" />
+            </div>
+        </RadzenCard>
+    </RadzenCard>
+</RadzenStack>

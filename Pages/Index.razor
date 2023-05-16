@@ -1,0 +1,88 @@
+﻿@page "/"
+@inject NotificationService NotificationService
+
+
+<RadzenLayout style="height: 1000px">
+
+    <RadzenSidebar class="rz-background-color-black border-0" @bind-Expanded="@sidebar1Expanded">
+        <RadzenPanelMenu class="rz-background-color-black">
+            <RadzenImage Path="Images/spotify.webp" class="ms-3" style="width:150px;"></RadzenImage>
+            <RadzenPanelMenuItem Text="Ana Sayfa" Icon="home" class="rz-color-white rz-border-black" />
+            <RadzenPanelMenuItem class="rz-border-black rz-color-white" Text="Ara" Icon="search" />
+            <RadzenPanelMenuItem class="rz-border-black rz-color-white" Text="Kitaplığın" Icon="bookmarks" />
+            <br><br>
+            <RadzenPanelMenuItem class="rz-border-black rz-color-white" Text="Çalma Listesi Oluştur" Icon="add" />
+            <RadzenPanelMenuItem class="rz-border-black rz-color-white" Text="Beğenilen Şarkılar" Icon="favorite" />
+
+        </RadzenPanelMenu>
+        <div class="rz-p-4">
+        </div>
+    </RadzenSidebar>
+    <RadzenBody style="background:linear-gradient(to top, var(--rz-black), var(--rz-base-900));">
+        <RadzenCard
+            class="d-flex card-hover rz-background-color-base-900 rz-color-white rz-text-align-start justify-content-between">
+
+            <div class="d-flex gap-2">
+                <RadzenButton Click=@(args => OnClick("Extra Small FAB")) Icon="chevron_left"
+                    ButtonStyle="ButtonStyle.Dark" Size="ButtonSize.ExtraSmall"
+                    class="rz-border-radius-10 rz-shadow-4" />
+                <RadzenButton Click=@(args => OnClick("Extra Small FAB")) Icon="chevron_right"
+                    ButtonStyle="ButtonStyle.Dark" Size="ButtonSize.ExtraSmall"
+                    class="rz-border-radius-10 rz-shadow-4" />
+            </div>
+
+            <div class="d-flex gap-3 align-items-center">
+                <RadzenText Style="display:inline-block;" TextStyle="TextStyle.Body2
+                " class="rz-color-white">Kaydol</RadzenText>
+                <RadzenButton Text="Oturum aç" Size="ButtonSize.Small"
+                    class="rz-background-color-white rz-color-black rz-border-radius-6">
+                </RadzenButton>
+            </div>
+
+        </RadzenCard>
+        <RadzenText TextStyle="TextStyle.H5" class="rz-color-white mt-1 ms-2">Odaklan</RadzenText>
+
+
+        @for (int i = 0; i < 14; i++)
+        {
+            <RadzenCard class="card-hover p-1 rz-background-color-base-900 rz-color-white rz-text-align-center ms-3"
+                style="width:170px; margin-top:20px; display:inline-block;transition: background-color 0.4s ease-out;">
+                <div style="position: relative;">
+                    <RadzenImage class="rz-border-radius-1" Style="width: 140px;" Path="Images/65.jpg">
+                    </RadzenImage>
+                    <RadzenButton id="fab" Style="position: absolute; bottom:0;right:0;opacity:0; color:black;" Click=@(args =>
+                    OnClick("Medium FAB")) Icon="play_arrow" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Medium"
+                        class="rz-border-radius-10 rz-shadow-8" />
+                </div>
+                <RadzenText TextStyle="TextStyle.Body2" class="rz-color-white">Jaw Ard</RadzenText>
+                <RadzenText TextStyle="TextStyle.Caption" class="rz-color-white">Jaw Ard Jaw Ard Jaw Ard Jaw Ard
+                </RadzenText>
+            </RadzenCard>
+        }
+        <hr class="mt-12" style="color:white;">
+    </RadzenBody>
+    <RadzenFooter class="rz-background-color-black">
+
+    </RadzenFooter>
+</RadzenLayout>
+
+@code {
+    bool sidebar1Expanded = true;
+    private void OnClick(string text)
+    {
+        NotificationService.Notify(new NotificationMessage
+            {
+                Severity = NotificationSeverity.Info,
+                Summary = "Button Clicked",
+                Detail = text
+            });
+    }
+}
+
+
+
+
+
+
+
+

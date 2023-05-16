@@ -1,0 +1,59 @@
+@page "/dropdowndatagrid"
+@inject ProductServices productService
+
+
+<h4>Dropdown DataGrid</h4>
+
+@if (products == null)
+{
+    <p>Loading....</p>
+}
+else
+{
+    <RadzenDropDownDataGrid TValue="string" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+        AllowFiltering="true" AllowClear="true"
+        Data="@(products.Select(c=> new{ProductId=c.ProductId,ProductName=c.ProductName}).Distinct().AsQueryable())"
+        TextProperty="ProductName" ValueProperty="ProductId" Style="margin-bottom: 20px;" Placeholder="Select..."
+        Change="@(args=> Change(args,"Dropdown"))">
+    </RadzenDropDownDataGrid>
+
+
+    <RadzenDropDownDataGrid FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowFiltering="true"
+        AllowClear="true" Data="@(products)" @bind-Value="multipleValues" Multiple="true" TextProperty="ProductName"
+        ValueProperty="ProductId" Style="margin-bottom: 20px;" Placeholder="Select..."
+        Change="@(args=> Change(args,"Multiple Dropdown"))">
+    </RadzenDropDownDataGrid>
+    <div class="col-md-6">
+        <h6>Ürün Bilgisi</h6>
+        <RadzenCard Style="overflow: auto; height:500px;">
+            @foreach (var item in events.OrderByDescending(i => i.Key))
+            {
+                @item.Value
+                <br />
+            }
+        </RadzenCard>
+    </div>
+}
+
+
+
+
+
+
+
+@code {
+    IEnumerable<Product> products;
+    IEnumerable<string> multipleValues;
+
+    Dictionary<DateTime, string> events = new Dictionary<DateTime, string>();
+    protected override async Task OnInitializedAsync()
+    {
+        products = await Task.Run(() => productService.ProductList());
+    }
+    void Change(object value, string name)
+    {
+        var str = value is IEnumerable<object> ? string.Join(", ", (IEnumerable<object>)value) : value;
+        events.Add(DateTime.Now, $"{name} value change to {str}");
+        StateHasChanged();
+    }
+}

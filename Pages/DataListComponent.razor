@@ -1,0 +1,40 @@
+@page "/datalist"
+@inject ProductServices productServices
+
+
+@if (products == null)
+{
+    <p>Loading.....</p>
+}
+else
+{
+    <RadzenDataList WrapItems="true" AllowPaging="true" PageSize="10" Data="@products" TItem="Product">
+        <Template Context="product">
+            <RadzenCard Style="width:300px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>Product Name:</div>
+                        <b>@product.ProductName</b>
+                        <br>
+                        <RadzenImage Path="@product.Photo" Style="width:100px;"></RadzenImage>
+                    </div>
+                    <div class="col-md-6">
+                        <div>Price:</div>
+                        <b>@String.Format(new System.Globalization.CultureInfo("en-US"),"{0:C}",product.Price )</b>
+                        <div style="margin-top: 20px;">Purchase Date</div>
+                        <b>@String.Format("{0:d}",product.PurchaseDate)</b>
+                        <div style="margin-top: 20px;">Product ID</div>
+                        <b>@product.ProductId</b>
+                    </div>
+                </div>
+            </RadzenCard>
+        </Template>
+    </RadzenDataList>
+}
+@code {
+    IEnumerable<Product> products;
+    protected override async Task OnInitializedAsync()
+    {
+        products = await Task.Run(() => productServices.ProductList());
+    }
+}

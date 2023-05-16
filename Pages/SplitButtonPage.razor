@@ -1,0 +1,56 @@
+@page "/splitbutton"
+
+@* Split Button *@
+<RadzenSplitButton Click=@(args=>OnClick(args,"SplitButton with text")) Text="SplitButton">
+    <ChildContent>
+        <RadzenSplitButtonItem Text="Item 1" Value="1" />
+        <RadzenSplitButtonItem Text="Item 2" Value="2" />
+    </ChildContent>
+</RadzenSplitButton>
+
+@* Splitted Button With text and Icons *@
+<RadzenSplitButton Click=@(args=>OnClick(args,"SplitButton with text")) Text="SplitButton" Icon="account_circle">
+    <ChildContent>
+        <RadzenSplitButtonItem Text="Item 1" Value="1" Icon="account_box" />
+        <RadzenSplitButtonItem Text="Item 2" Value="2" Icon="account_balance_wallet" />
+    </ChildContent>
+</RadzenSplitButton>
+
+@* Splitted Button with Icon *@
+<RadzenSplitButton Click=@(args=>OnClick(args,"SplitButton with Icon")) Icon="account_circle">
+    <ChildContent>
+        <RadzenSplitButtonItem Text="Item 1" Value="1" Icon="account_box" />
+        <RadzenSplitButtonItem Text="Item 2" Value="2" Icon="account_balance_wallet" />
+    </ChildContent>
+</RadzenSplitButton>
+<br><br>
+@* Disabled *@
+<RadzenSplitButton Disabled="true" Click=@(args=>OnClick(args,"Disabled SplitButton")) Text="SplitButton">
+    <ChildContent>
+        <RadzenSplitButtonItem Text="Item 1" Value="1" />
+        <RadzenSplitButtonItem Text="Item 2" Value="2" />
+    </ChildContent>
+</RadzenSplitButton>
+
+
+
+<br>
+<p>@msg</p>
+
+
+@code {
+    public string msg { get; set; }
+    void OnClick(RadzenSplitButtonItem item, string buttonName)
+    {
+        if (item != null)
+        {
+            msg = buttonName + " , " + "item with value" + item.Value + " clicked";
+        }
+        else
+        {
+            msg = buttonName + " clicked";
+        }
+
+    }
+
+}
